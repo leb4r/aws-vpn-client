@@ -33,13 +33,13 @@ end
                           "--disable-dependency-tracking",
                           "--disable-silent-rules",
                           "--with-crypto-library=openssl",
-                          "--enable-pkcs11",
+                          # "--enable-pkcs11",
                           "--prefix=#{prefix}"
     inreplace "sample/sample-plugins/Makefile" do |s|
-      s.gsub! HOMEBREW_LIBRARY/"Homebrew/shims/mac/super/pkg-config",
-              Formula["pkg-config"].opt_bin/"pkg-config"
-      s.gsub! HOMEBREW_LIBRARY/"Homebrew/shims/mac/super/sed",
-              "/usr/bin/sed"
+      # s.gsub! HOMEBREW_LIBRARY/"Homebrew/shims/mac/super/pkg-config",
+              # Formula["pkg-config"].opt_bin/"pkg-config"
+      # s.gsub! HOMEBREW_LIBRARY/"Homebrew/shims/mac/super/sed",
+              # "/usr/bin/sed"
     end
     system "make", "install"
 
@@ -51,7 +51,7 @@ end
     (etc/"openvpn").install doc/"samples/sample-config-files/server.conf"
 
     # We don't use mbedtls, so this file is unnecessary & somewhat confusing.
-    rm doc/"README.mbedtls"
+    # rm doc/"README.mbedtls"
   end
 
   def post_install
